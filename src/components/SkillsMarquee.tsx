@@ -94,6 +94,14 @@ export default function SkillsMarquee() {
           <rect x="16" y="4" width="3" height="16" rx="0.5" fill="#F9E03D" />
         </svg>
       )
+    },
+    {
+      name: 'Supabase',
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-7 h-7" fill="none">
+          <path d="M12 2L4 13h6l-2 9 8-11h-6l2-9z" fill="#3ECF8E" />
+        </svg>
+      )
     }
   ];
 
@@ -186,6 +194,22 @@ export default function SkillsMarquee() {
           <path d="M2 12h20M12 2v20" stroke="#CF142B" strokeWidth="2.4" />
           <path d="M4 4l16 16M4 20L20 4" stroke="#FFFFFF" strokeWidth="2" />
           <path d="M4 4l16 16M4 20L20 4" stroke="#CF142B" strokeWidth="0.8" />
+        </svg>
+      )
+    },
+    {
+      name: 'Docker',
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-7 h-7" fill="none">
+          <path d="M3 13.5c0 .3.1.5.2.7.2.3.5.5.9.5h16.2c.4 0 .7-.2.9-.5.1-.2.2-.4.2-.7v-.5H3v.5z" fill="#2496ED" />
+          <rect x="5" y="8" width="2" height="2" fill="#2496ED" />
+          <rect x="8" y="8" width="2" height="2" fill="#2496ED" />
+          <rect x="11" y="8" width="2" height="2" fill="#2496ED" />
+          <rect x="14" y="8" width="2" height="2" fill="#2496ED" />
+          <rect x="8" y="5" width="2" height="2" fill="#2496ED" />
+          <rect x="11" y="5" width="2" height="2" fill="#2496ED" />
+          <rect x="14" y="5" width="2" height="2" fill="#2496ED" />
+          <path d="M18 10c0-1.5-.5-2.5-1.5-2.5V8c.5 0 .8.3.8.8v1.2H18z" fill="#2496ED" />
         </svg>
       )
     }
