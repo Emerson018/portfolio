@@ -1,22 +1,38 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Award, Eye, X, ExternalLink } from 'lucide-react';
+import { Award, Eye, X, ExternalLink, Images, ChevronLeft, ChevronRight } from 'lucide-react';
 
 import flaskCertImg from '../assets/certificates/flask_certificado.png';
 import estatisticaCertImg from '../assets/certificates/estatistica_certificado.png';
 import pythonOOCertImg from '../assets/certificates/python_oo_certificado.png';
 
+import cert1 from '../assets/certificates/certificado1.jpg';
+import cert2 from '../assets/certificates/certificado2.jpg';
+import cert3 from '../assets/certificates/certificado3.jpg';
+import cert4 from '../assets/certificates/certificado4.jpg';
+import cert5 from '../assets/certificates/certificado5.png';
+import cert6 from '../assets/certificates/certificado6.png';
+
 interface Certificate {
   id: string;
   titulo: string;
   instituicao: string;
-  tag: 'Desenvolvimento' | 'Business Intelligence' | 'Ciência de Dados' | 'Banco de Dados' | 'Automação & IA' | 'Estatística';
+  tag: 'Desenvolvimento' | 'Business Intelligence' | 'Ciência de Dados' | 'Banco de Dados' | 'Automação & IA' | 'Estatística' | 'Certificado';
   imageSrc: string;
+  images?: string[];
   credentialUrl?: string;
 }
 
 export default function Certificates() {
   const certificates: Certificate[] = [
+    {
+      id: 'leroy-merlin-reconhecimento',
+      titulo: 'Certificado de Elogio e Reconhecimento',
+      instituicao: 'Leroy Merlin',
+      tag: 'Certificado',
+      imageSrc: cert1,
+      images: [cert1, cert2, cert3, cert4, cert5, cert6]
+    },
     {
       id: 'flask-dev',
       titulo: 'Flask: avançando no desenvolvimento web com Python',
@@ -86,6 +102,7 @@ export default function Certificates() {
   ];
 
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
+  const [currentImgIndex, setCurrentImgIndex] = useState<number>(0);
 
   const getTagStyles = (tag: Certificate['tag']) => {
     switch (tag) {
@@ -101,6 +118,8 @@ export default function Certificates() {
         return 'bg-purple-500/10 text-purple-400 border border-purple-500/20';
       case 'Estatística':
         return 'bg-rose-500/10 text-rose-400 border border-rose-500/20';
+      case 'Certificado':
+        return 'bg-teal-500/10 text-teal-400 border border-teal-500/20';
       default:
         return 'bg-gray-500/10 text-gray-400 border border-gray-500/20';
     }
@@ -117,6 +136,18 @@ export default function Certificates() {
         ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
       },
     }),
+  };
+
+  const handlePrevImg = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!selectedCert || !selectedCert.images) return;
+    setCurrentImgIndex((prev) => (prev === 0 ? selectedCert.images!.length - 1 : prev - 1));
+  };
+
+  const handleNextImg = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!selectedCert || !selectedCert.images) return;
+    setCurrentImgIndex((prev) => (prev === selectedCert.images!.length - 1 ? 0 : prev + 1));
   };
 
   return (
@@ -159,10 +190,22 @@ export default function Certificates() {
           >
             <div className="flex flex-col gap-3">
               <div className="flex justify-between items-start">
-                <span className={`text-[10px] font-semibold tracking-wider px-2.5 py-0.5 rounded-full uppercase ${getTagStyles(cert.tag)}`}>
-                  {cert.tag}
-                </span>
-                <Award className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors duration-300" />
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className={`text-[10px] font-semibold tracking-wider px-2.5 py-0.5 rounded-full uppercase ${getTagStyles(cert.tag)}`}>
+                    {cert.tag}
+                  </span>
+                  {cert.images && (
+                    <span className="text-[9px] font-medium px-2 py-0.5 bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 rounded-full flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
+                      {cert.images.length} fotos
+                    </span>
+                  )}
+                </div>
+                {cert.images ? (
+                  <Images className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors duration-300" />
+                ) : (
+                  <Award className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors duration-300" />
+                )}
               </div>
               <div>
                 <h3 className="text-base font-bold text-white leading-snug group-hover:text-indigo-400 transition-colors line-clamp-2">
@@ -176,7 +219,10 @@ export default function Certificates() {
 
             <div className="mt-4 flex gap-2 w-full">
               <button
-                onClick={() => setSelectedCert(cert)}
+                onClick={() => {
+                  setSelectedCert(cert);
+                  setCurrentImgIndex(0);
+                }}
                 className={`flex items-center justify-center gap-1.5 py-2.5 bg-secondary/80 hover:bg-[#151550]/40 border border-[#272835] hover:border-[#44444A] text-xs font-semibold text-gray-300 hover:text-white rounded-2xl transition-all duration-300 ${cert.credentialUrl ? 'flex-1' : 'w-full'}`}
               >
                 <Eye className="w-4 h-4" />
@@ -231,18 +277,74 @@ export default function Certificates() {
               </button>
 
               {/* Certificate Image Frame */}
-              <div className="bg-[#0D0C22] border border-[#272835] p-3 rounded-3xl shadow-2xl flex flex-col items-center overflow-hidden">
-                <img
-                  src={selectedCert.imageSrc}
-                  alt={`Certificado de ${selectedCert.titulo}`}
-                  className="max-w-full max-h-[75vh] object-contain rounded-2xl"
-                  loading="lazy"
-                />
+              <div className="bg-[#0D0C22] border border-[#272835] p-4 rounded-3xl shadow-2xl flex flex-col items-center overflow-hidden w-full relative">
+                {/* Navigation Arrows for Gallery */}
+                {selectedCert.images && selectedCert.images.length > 1 && (
+                  <>
+                    <button
+                      onClick={handlePrevImg}
+                      className="absolute left-6 top-[40%] transform -translate-y-1/2 p-2.5 bg-[#0D0C22]/80 hover:bg-indigo-500/20 border border-[#272835] hover:border-indigo-500/40 text-white rounded-full transition-all duration-300 z-10 flex items-center justify-center backdrop-blur-sm"
+                      aria-label="Imagem anterior"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    
+                    <button
+                      onClick={handleNextImg}
+                      className="absolute right-6 top-[40%] transform -translate-y-1/2 p-2.5 bg-[#0D0C22]/80 hover:bg-indigo-500/20 border border-[#272835] hover:border-indigo-500/40 text-white rounded-full transition-all duration-300 z-10 flex items-center justify-center backdrop-blur-sm"
+                      aria-label="Próxima imagem"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </>
+                )}
+
+                {/* Interactive Image Frame */}
+                <div className="relative w-full flex items-center justify-center min-h-[40vh] max-h-[70vh] overflow-hidden rounded-2xl bg-[#070614]/60 border border-[#1f202b]">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={selectedCert.images ? selectedCert.images[currentImgIndex] : selectedCert.imageSrc}
+                      src={selectedCert.images ? selectedCert.images[currentImgIndex] : selectedCert.imageSrc}
+                      alt={`Certificado de ${selectedCert.titulo} - Imagem ${currentImgIndex + 1}`}
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.2 }}
+                      className="max-w-full max-h-[70vh] object-contain"
+                      loading="lazy"
+                    />
+                  </AnimatePresence>
+                </div>
+
+                {/* Thumbnail indicators */}
+                {selectedCert.images && selectedCert.images.length > 1 && (
+                  <div className="flex gap-2 mt-4 justify-center items-center flex-wrap">
+                    {selectedCert.images.map((img, idx) => (
+                      <button
+                        key={idx}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentImgIndex(idx);
+                        }}
+                        className={`w-12 h-8 rounded-lg overflow-hidden border transition-all duration-300 ${
+                          currentImgIndex === idx 
+                            ? 'border-indigo-400 scale-105 shadow-md shadow-indigo-500/10' 
+                            : 'border-[#272835] opacity-50 hover:opacity-80'
+                        }`}
+                      >
+                        <img src={img} alt={`Miniatura ${idx + 1}`} className="w-full h-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                )}
                 
                 {/* Certificate info footer */}
                 <div className="w-full mt-3 px-3 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-3">
                   <div className="flex flex-col max-w-[70%]">
-                    <h4 className="text-sm font-bold text-white truncate md:whitespace-normal">{selectedCert.titulo}</h4>
+                    <h4 className="text-sm font-bold text-white truncate md:whitespace-normal">
+                      {selectedCert.titulo}
+                      {selectedCert.images && ` (${currentImgIndex + 1} de ${selectedCert.images.length})`}
+                    </h4>
                     <p className="text-[10px] text-gray-400">{selectedCert.instituicao}</p>
                   </div>
                   <div className="flex items-center gap-3 flex-shrink-0">
