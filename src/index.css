@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0D0C22;
+  --color-secondary: #0B0B0F;
+  --color-card: #151550;
+  --color-accent: #272835;
+  --color-border: #44444A;
+}
+
+@utility snap-y-mandatory {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+@utility snap-align-start {
+  scroll-snap-align: start;
+}
+
+body {
+  background-color: var(--color-primary);
+  color: var(--color-gray-100);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
