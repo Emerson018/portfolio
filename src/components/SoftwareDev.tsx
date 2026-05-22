@@ -4,18 +4,19 @@ import { Smartphone, Table, Bot, Mic, Mail, ArrowUpRight, Play, X } from 'lucide
 import { FaLinkedin } from 'react-icons/fa';
 import nexstyleLogo from '../assets/nexstyle_logo.png';
 import nexstyleVideo from '../assets/videos/nexstyle_apresentacao.mp4';
+import financyVideo from '../assets/videos/financy_apresentacao.mp4';
 
 export default function SoftwareDev() {
-  const [showVideo, setShowVideo] = useState(false);
+  const [activeVideo, setActiveVideo] = useState<{ url: string; title: string } | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (showVideo && videoRef.current) {
+    if (activeVideo && videoRef.current) {
       videoRef.current.play().catch(err => {
         console.warn("Video playback was prevented:", err);
       });
     }
-  }, [showVideo]);
+  }, [activeVideo]);
 
   const slideInVariants = {
     hidden: { opacity: 0, x: 60 },
@@ -56,7 +57,7 @@ export default function SoftwareDev() {
       </motionFramer.div>
 
       {/* Projects Grid */}
-      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center z-10 my-8 lg:my-0">
+      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-8 items-stretch z-10 my-8 lg:my-0">
         
         {/* Card 1: NexStyle */}
         <motionFramer.div
@@ -66,7 +67,7 @@ export default function SoftwareDev() {
           custom={0}
           variants={slideInVariants}
           whileHover={{ y: -8, transition: { duration: 0.2 } }}
-          onClick={() => setShowVideo(true)}
+          onClick={() => setActiveVideo({ url: nexstyleVideo, title: 'NexStyle - Barbearia & Salão' })}
           className="p-6 bg-secondary/85 border border-border/40 rounded-3xl flex flex-col justify-between h-[390px] shadow-2xl relative group cursor-pointer animate-fade-in"
         >
           <div className="flex flex-col gap-4">
@@ -137,7 +138,97 @@ export default function SoftwareDev() {
           </div>
         </motionFramer.div>
 
-        {/* Card 2: Dashboard Interativo CRUD */}
+        {/* Card 2: Financy App */}
+        <motionFramer.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          custom={0.1}
+          variants={slideInVariants}
+          whileHover={{ y: -8, transition: { duration: 0.2 } }}
+          onClick={() => setActiveVideo({ url: financyVideo, title: 'Financy App - Controle Financeiro' })}
+          className="p-6 bg-secondary/85 border border-border/40 rounded-3xl flex flex-col justify-between h-[390px] shadow-2xl relative group cursor-pointer animate-fade-in"
+        >
+          <div className="flex flex-col gap-4">
+            <div className="flex justify-between items-start">
+              <div className="p-3 bg-emerald-500/10 rounded-2xl text-emerald-400">
+                <Smartphone className="w-6 h-6" />
+              </div>
+              <span className="text-[10px] font-mono px-2 py-0.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 rounded">
+                React Native + Expo
+              </span>
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white flex items-center gap-1 group-hover:text-emerald-400 transition-colors">
+                Financy App
+                <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </h3>
+              <p className="text-xs text-gray-400 mt-2 leading-relaxed">
+                Aplicativo de finanças pessoais para controle de entradas e saídas financeiras. Apresenta saldo consolidado, extrato de transações e gráficos de despesas.
+              </p>
+            </div>
+          </div>
+
+          {/* Visual Mockup - Financy App Phone (Dark Emerald) */}
+          <div className="flex justify-center items-center h-40 overflow-hidden relative mt-4 select-none">
+            <div className="w-28 h-40 bg-[#0C100E] rounded-t-2xl border border-emerald-500/20 p-2 flex flex-col gap-2 shadow-inner transform translate-y-3 transition-transform group-hover:translate-y-1 duration-300 relative">
+              {/* Speaker & Sensor */}
+              <div className="flex justify-center items-center gap-1">
+                <div className="w-6 h-0.5 bg-zinc-800 rounded-full"></div>
+                <div className="w-0.5 h-0.5 bg-zinc-800 rounded-full"></div>
+              </div>
+              
+              {/* Mini App Header */}
+              <div className="flex justify-between items-center px-1 mt-1 text-[5px] text-zinc-400">
+                <span>Olá, Emerson</span>
+                <span className="p-0.5 bg-emerald-500/20 text-emerald-400 rounded-full">💰</span>
+              </div>
+
+              {/* Balance Card */}
+              <div className="bg-emerald-500/10 border border-emerald-500/20 rounded p-1.5 flex flex-col gap-0.5">
+                <span className="text-[4px] text-zinc-500 uppercase font-mono">Saldo Disponível</span>
+                <span className="text-[7.5px] font-bold text-emerald-400">R$ 4.250,00</span>
+              </div>
+
+              {/* Inflow & Outflow tabs */}
+              <div className="flex gap-1 justify-center">
+                <div className="flex-1 bg-zinc-900 border border-zinc-800 text-[4px] text-zinc-400 p-1 rounded flex items-center justify-between">
+                  <span>Receitas</span>
+                  <span className="text-emerald-500">▲</span>
+                </div>
+                <div className="flex-1 bg-zinc-900 border border-zinc-800 text-[4px] text-zinc-400 p-1 rounded flex items-center justify-between">
+                  <span>Despesas</span>
+                  <span className="text-red-500">▼</span>
+                </div>
+              </div>
+
+              {/* Recent Transactions List */}
+              <div className="flex flex-col gap-1 overflow-hidden">
+                <div className="flex justify-between items-center text-[4.5px] border-b border-zinc-900 pb-0.5">
+                  <span className="text-zinc-300 font-medium">Salário</span>
+                  <span className="text-emerald-400 font-semibold">+ R$ 5.000</span>
+                </div>
+                <div className="flex justify-between items-center text-[4.5px] border-b border-zinc-900 pb-0.5">
+                  <span className="text-zinc-300 font-medium">Supermercado</span>
+                  <span className="text-red-400 font-semibold">- R$ 350</span>
+                </div>
+              </div>
+
+              {/* Hover Play Button Overlay */}
+              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-1 rounded-t-2xl">
+                <div className="p-2 bg-emerald-500 rounded-full text-black shadow-lg scale-90 group-hover:scale-100 transition-transform duration-300">
+                  <Play className="w-4 h-4 fill-black text-black ml-0.5" />
+                </div>
+                <span className="text-[8px] font-bold text-white uppercase tracking-wider">
+                  Assistir Vídeo
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </motionFramer.div>
+
+        {/* Card 3: Dashboard Interativo CRUD */}
         <motionFramer.div
           initial="hidden"
           whileInView="visible"
@@ -217,7 +308,7 @@ export default function SoftwareDev() {
           </div>
         </motionFramer.div>
 
-        {/* Card 3: Automação & IA */}
+        {/* Card 4: Automação & IA */}
         <motionFramer.div
           initial="hidden"
           whileInView="visible"
@@ -315,13 +406,13 @@ export default function SoftwareDev() {
 
       {/* Video Modal Player */}
       <AnimatePresence>
-        {showVideo && (
+        {activeVideo && (
           <motionFramer.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 bg-[#0B0B0F]/90 flex items-center justify-center p-4 md:p-6 backdrop-blur-md"
-            onClick={() => setShowVideo(false)}
+            onClick={() => setActiveVideo(null)}
           >
             <motionFramer.div
               initial={{ scale: 0.95, y: 15 }}
@@ -334,18 +425,22 @@ export default function SoftwareDev() {
               {/* Modal Header */}
               <div className="flex justify-between items-center px-6 py-4 border-b border-[#272835] bg-[#0B0B0F]">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-amber-500/10 rounded-xl text-amber-400">
+                  <div className={`p-2 rounded-xl ${
+                    activeVideo.title.includes('Financy') 
+                      ? 'bg-emerald-500/10 text-emerald-400' 
+                      : 'bg-amber-500/10 text-amber-400'
+                  }`}>
                     <Smartphone className="w-5 h-5" />
                   </div>
                   <div>
                     <h4 className="font-extrabold text-white text-sm sm:text-base">
-                      NexStyle - Barbearia & Salão
+                      {activeVideo.title}
                     </h4>
                     <p className="text-[10px] text-gray-400">Vídeo de Apresentação do Aplicativo</p>
                   </div>
                 </div>
                 <button
-                  onClick={() => setShowVideo(false)}
+                  onClick={() => setActiveVideo(null)}
                   className="p-2 bg-[#0D0C22] hover:bg-red-500/10 hover:text-red-400 border border-[#272835] text-white rounded-full transition-all duration-300 flex items-center justify-center"
                   aria-label="Fechar vídeo"
                 >
@@ -357,7 +452,7 @@ export default function SoftwareDev() {
               <div className="relative w-full bg-black flex items-center justify-center overflow-hidden">
                 <video
                   ref={videoRef}
-                  src={nexstyleVideo}
+                  src={activeVideo.url}
                   className="w-full h-auto max-h-[72vh] object-contain"
                   style={{
                     transform: 'translate3d(0,0,0)',
