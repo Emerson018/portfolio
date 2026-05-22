@@ -6,6 +6,19 @@
   --color-card: #151550;
   --color-accent: #272835;
   --color-border: #44444A;
+
+  /* Custom animations for Infinite Marquee */
+  --animate-marquee-left: marquee-left 25s linear infinite;
+  --animate-marquee-right: marquee-right 25s linear infinite;
+
+  @keyframes marquee-left {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes marquee-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0%); }
+  }
 }
 
 @utility snap-y-mandatory {

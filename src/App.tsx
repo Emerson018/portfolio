@@ -1,11 +1,13 @@
 import Hero from './components/Hero';
 import DataBI from './components/DataBI';
 import SoftwareDev from './components/SoftwareDev';
+import SkillsMarquee from './components/SkillsMarquee';
 
 function App() {
   return (
     <main className="snap-y-mandatory h-screen w-full overflow-y-scroll bg-primary text-gray-100 scroll-smooth">
       <Hero />
+      <SkillsMarquee />
       <DataBI />
       <SoftwareDev />
     </main>
