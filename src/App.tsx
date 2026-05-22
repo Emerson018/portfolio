@@ -2,6 +2,7 @@ import Hero from './components/Hero';
 import DataBI from './components/DataBI';
 import SoftwareDev from './components/SoftwareDev';
 import SkillsMarquee from './components/SkillsMarquee';
+import Certificates from './components/Certificates';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <SkillsMarquee />
       <DataBI />
       <SoftwareDev />
+      <Certificates />
     </main>
   );
 }

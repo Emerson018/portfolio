@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/databi.tsx","./src/components/hero.tsx","./src/components/skillsmarquee.tsx","./src/components/softwaredev.tsx"],"version":"5.9.3"}
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/certificates.tsx","./src/components/databi.tsx","./src/components/hero.tsx","./src/components/skillsmarquee.tsx","./src/components/softwaredev.tsx"],"version":"5.9.3"}
