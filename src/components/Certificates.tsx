@@ -1,17 +1,46 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Award, Eye, X } from 'lucide-react';
+import { Award, Eye, X, ExternalLink } from 'lucide-react';
+
+import flaskCertImg from '../assets/certificates/flask_certificado.png';
+import estatisticaCertImg from '../assets/certificates/estatistica_certificado.png';
+import pythonOOCertImg from '../assets/certificates/python_oo_certificado.png';
 
 interface Certificate {
   id: string;
   titulo: string;
   instituicao: string;
-  tag: 'Desenvolvimento' | 'Business Intelligence' | 'Ciência de Dados' | 'Banco de Dados' | 'Automação & IA';
+  tag: 'Desenvolvimento' | 'Business Intelligence' | 'Ciência de Dados' | 'Banco de Dados' | 'Automação & IA' | 'Estatística';
   imageSrc: string;
+  credentialUrl?: string;
 }
 
 export default function Certificates() {
   const certificates: Certificate[] = [
+    {
+      id: 'flask-dev',
+      titulo: 'Flask: avançando no desenvolvimento web com Python',
+      instituicao: 'Alura',
+      tag: 'Desenvolvimento',
+      imageSrc: flaskCertImg,
+      credentialUrl: 'https://cursos.alura.com.br/certificate/emersonvicosa/flask-desenvolvimento-web',
+    },
+    {
+      id: 'estatistica-python',
+      titulo: 'Estatística com Python: frequências e medidas',
+      instituicao: 'Alura',
+      tag: 'Estatística',
+      imageSrc: estatisticaCertImg,
+      credentialUrl: 'https://cursos.alura.com.br/certificate/emersonvicosa/estatistica-distribuicoes-e-medidas',
+    },
+    {
+      id: 'python-oo',
+      titulo: 'Python: com orientação a objetos',
+      instituicao: 'Alura',
+      tag: 'Desenvolvimento',
+      imageSrc: pythonOOCertImg,
+      credentialUrl: 'https://cursos.alura.com.br/certificate/emersonvicosa/python-3-avancando-orientacao-objetos',
+    },
     {
       id: 'react-dev',
       titulo: 'Desenvolvimento Web Moderno (React)',
@@ -70,6 +99,8 @@ export default function Certificates() {
         return 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20';
       case 'Automação & IA':
         return 'bg-purple-500/10 text-purple-400 border border-purple-500/20';
+      case 'Estatística':
+        return 'bg-rose-500/10 text-rose-400 border border-rose-500/20';
       default:
         return 'bg-gray-500/10 text-gray-400 border border-gray-500/20';
     }
@@ -143,13 +174,27 @@ export default function Certificates() {
               </div>
             </div>
 
-            <button
-              onClick={() => setSelectedCert(cert)}
-              className="mt-4 flex items-center justify-center gap-1.5 w-full py-2.5 bg-secondary/80 hover:bg-[#151550]/40 border border-[#272835] hover:border-[#44444A] text-xs font-semibold text-gray-300 hover:text-white rounded-2xl transition-all duration-300"
-            >
-              <Eye className="w-4 h-4" />
-              <span>Ver Credencial</span>
-            </button>
+            <div className="mt-4 flex gap-2 w-full">
+              <button
+                onClick={() => setSelectedCert(cert)}
+                className={`flex items-center justify-center gap-1.5 py-2.5 bg-secondary/80 hover:bg-[#151550]/40 border border-[#272835] hover:border-[#44444A] text-xs font-semibold text-gray-300 hover:text-white rounded-2xl transition-all duration-300 ${cert.credentialUrl ? 'flex-1' : 'w-full'}`}
+              >
+                <Eye className="w-4 h-4" />
+                <span>Visualizar</span>
+              </button>
+              
+              {cert.credentialUrl && (
+                <a
+                  href={cert.credentialUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-1.5 px-3 py-2.5 bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/20 hover:border-indigo-500/40 text-xs font-semibold text-indigo-400 hover:text-white rounded-2xl transition-all duration-300 flex-1"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  <span>Validar</span>
+                </a>
+              )}
+            </div>
           </motion.div>
         ))}
       </div>
@@ -195,14 +240,27 @@ export default function Certificates() {
                 />
                 
                 {/* Certificate info footer */}
-                <div className="w-full mt-3 px-3 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-2">
-                  <div className="flex flex-col">
-                    <h4 className="text-sm font-bold text-white">{selectedCert.titulo}</h4>
+                <div className="w-full mt-3 px-3 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-3">
+                  <div className="flex flex-col max-w-[70%]">
+                    <h4 className="text-sm font-bold text-white truncate md:whitespace-normal">{selectedCert.titulo}</h4>
                     <p className="text-[10px] text-gray-400">{selectedCert.instituicao}</p>
                   </div>
-                  <span className={`text-[9px] font-semibold px-2.5 py-0.5 rounded-full uppercase ${getTagStyles(selectedCert.tag)}`}>
-                    {selectedCert.tag}
-                  </span>
+                  <div className="flex items-center gap-3 flex-shrink-0">
+                    {selectedCert.credentialUrl && (
+                      <a
+                        href={selectedCert.credentialUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-500/20 hover:bg-indigo-500/30 border border-indigo-500/30 hover:border-indigo-500/50 text-[10px] font-semibold text-indigo-300 hover:text-white rounded-xl transition-all duration-300"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        <span>Validar na Alura</span>
+                      </a>
+                    )}
+                    <span className={`text-[9px] font-semibold px-2.5 py-0.5 rounded-full uppercase ${getTagStyles(selectedCert.tag)}`}>
+                      {selectedCert.tag}
+                    </span>
+                  </div>
                 </div>
               </div>
             </motion.div>
