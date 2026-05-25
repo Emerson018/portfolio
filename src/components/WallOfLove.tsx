@@ -1,69 +1,40 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Star, Image as ImageIcon, X } from 'lucide-react';
-
-import cert1 from '../assets/certificates/certificado1.jpg';
-import cert2 from '../assets/certificates/certificado2.jpg';
-import cert3 from '../assets/certificates/certificado3.jpg';
-import cert4 from '../assets/certificates/certificado4.jpg';
-import cert5 from '../assets/certificates/certificado5.png';
-import cert6 from '../assets/certificates/certificado6.png';
+import { motion } from 'framer-motion';
+import { Star, ExternalLink } from 'lucide-react';
 
 interface Feedback {
   id: string;
   texto: string;
   autor: string;
   empresa: string;
-  fotoOriginalUrl: string;
 }
 
 export default function WallOfLove() {
   const feedbacks: Feedback[] = [
     {
       id: 'feedback-1',
-      texto: '"Emerson demonstrou excelente agilidade e comprometimento no desenvolvimento das soluções. Sua postura proativa e domínio técnico ajudaram a agilizar as entregas da equipe."',
-      autor: 'Gerência de TI',
-      empresa: 'Leroy Merlin',
-      fotoOriginalUrl: cert1,
+      texto: '"O Emerson tem se revelado um verdadeiro diferencial para a nossa equipe. Sua trajetória é marcada por um comprometimento exemplar e uma assiduidade impecável. Mais do que apenas cumprir tarefas, ele demonstra um desejo genuíno de evolução, absorvendo com profundidade o conhecimento compartilhado pelos nossos colaboradores. Sua curva de aprendizado é acelerada, o que o permite dominar novas funções com uma agilidade impressionante e uma facilidade notável."',
+      autor: 'Supervisora de TI',
+      empresa: 'Hospital Ernesto Dornelles',
     },
     {
       id: 'feedback-2',
-      texto: '"Excelente profissional! Teve papel fundamental na reestruturação dos nossos relatórios, automatizando consultas complexas e facilitando as decisões diárias da operação."',
-      autor: 'Coordenação de Operações',
+      texto: '"Emerson no seu dia a dia sempre procura fazer o seu melhor, se empenha para buscar os seus resultados e da sua seção, sempre entusiasmado com as conquistas e disposto a buscar. Muito obrigada Emerson pela tua dedicação à seção de Elétrica e à nossa loja. Muito orgulho de te ter em minha equipe."',
+      autor: 'Gerente de loja',
       empresa: 'Leroy Merlin',
-      fotoOriginalUrl: cert2,
     },
     {
       id: 'feedback-3',
-      texto: '"Gostaria de parabenizar o Emerson pela dedicação e pelo espírito de colaboração. Sempre disposto a buscar melhorias técnicas e apoiar os colegas diante de desafios."',
-      autor: 'Colega de Equipe',
+      texto: '"Meu amigo Emerson, me ajudou muito nesses 2 meses em que me mudei para a seção de elétrica, é uma pessoa que era um pouco introvertida, mas que busca primeiramente conhecer ao redor para poder dar abertura, tem sido meu grande amigo, a quem vou ser eternamente grata por toda compaixão, carisma e ensinamentos sobre os produtos."',
+      autor: 'Coordenadora de loja',
       empresa: 'Leroy Merlin',
-      fotoOriginalUrl: cert3,
     },
     {
       id: 'feedback-4',
-      texto: '"O comprometimento e a qualidade técnica demonstrados no projeto foram incríveis. Uma entrega sólida que superou nossas expectativas de performance e usabilidade."',
-      autor: 'Product Owner',
+      texto: '"Emerson um cara sempre disposto a ajudar, super inteligente, sempre por dentro das novidades. Como colega dentro desses quase 3 anos trabalhando na mesma sessão, vejo além de um colega um grande amigo."',
+      autor: 'Colaborador',
       empresa: 'Leroy Merlin',
-      fotoOriginalUrl: cert4,
-    },
-    {
-      id: 'feedback-5',
-      texto: '"Emerson conduziu a otimização dos processos com maestria. Seu foco em usabilidade e performance transformou a produtividade de toda a nossa área."',
-      autor: 'Gestão de Processos',
-      empresa: 'Leroy Merlin',
-      fotoOriginalUrl: cert5,
-    },
-    {
-      id: 'feedback-6',
-      texto: '"Sua capacidade de entender as necessidades da operação e traduzi-las em soluções eficientes foi um diferencial gigante para o nosso setor."',
-      autor: 'Supervisão de Logística',
-      empresa: 'Leroy Merlin',
-      fotoOriginalUrl: cert6,
     },
   ];
-
-  const [selectedFeedbackImg, setSelectedFeedbackImg] = useState<string | null>(null);
 
   const slideInVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -78,8 +49,10 @@ export default function WallOfLove() {
     }),
   };
 
+  const proofLink = "https://drive.google.com/drive/folders/1ho6x9QoFarjkbm_5-Z48MU4m-JBpLPXr";
+
   return (
-    <section className="snap-align-start h-screen w-full flex flex-col justify-between px-6 sm:px-12 lg:px-24 relative overflow-y-auto bg-[#151550] border-t border-[#272835] py-12 lg:py-16">
+    <section className="snap-align-start min-h-screen lg:h-screen w-full flex flex-col justify-between px-6 sm:px-12 lg:px-24 relative overflow-visible lg:overflow-hidden bg-[#151550] border-t border-[#272835] py-12 lg:py-16">
       
       {/* Background ambient lighting */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -103,8 +76,8 @@ export default function WallOfLove() {
         </h2>
       </motion.div>
 
-      {/* Masonry CSS Columns Container */}
-      <div className="max-w-7xl w-full mx-auto columns-1 md:columns-3 gap-6 space-y-6 z-10 my-8 flex-1 overflow-y-auto lg:overflow-visible py-2">
+      {/* Grid Container (2x2 on desktop for symmetry with 4 items) */}
+      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 z-10 my-8 flex-1 overflow-visible py-2">
         {feedbacks.map((fb, index) => (
           <motion.div
             key={fb.id}
@@ -114,7 +87,7 @@ export default function WallOfLove() {
             custom={index * 0.08}
             variants={slideInVariants}
             whileHover={{ y: -4, transition: { duration: 0.2 } }}
-            className="break-inside-avoid bg-[#0B0B0F] border border-[#272835] rounded-3xl p-6 flex flex-col justify-between hover:border-[#44444A] transition-colors duration-300 relative group shadow-lg"
+            className="bg-[#0B0B0F]/90 border border-[#272835] rounded-3xl p-6 flex flex-col justify-between hover:border-[#44444A] transition-colors duration-300 relative group shadow-lg"
           >
             <div>
               {/* Star Rating */}
@@ -141,13 +114,15 @@ export default function WallOfLove() {
                 </span>
               </div>
 
-              <button
-                onClick={() => setSelectedFeedbackImg(fb.fotoOriginalUrl)}
-                className="mt-5 flex items-center justify-center gap-1.5 w-full py-2.5 bg-secondary/80 hover:bg-[#151550]/40 border border-[#272835] hover:border-[#44444A] text-xs font-semibold text-gray-300 hover:text-white rounded-2xl transition-all duration-300"
+              <a
+                href={proofLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 flex items-center justify-center gap-1.5 w-full py-2.5 bg-secondary/80 hover:bg-[#151550]/40 border border-[#272835] hover:border-[#44444A] text-xs font-semibold text-gray-300 hover:text-white rounded-2xl transition-all duration-300 text-center"
               >
-                <ImageIcon className="w-4 h-4" />
-                <span>Ver prova original</span>
-              </button>
+                <ExternalLink className="w-4 h-4" />
+                <span>Ver feedbacks</span>
+              </a>
             </div>
           </motion.div>
         ))}
@@ -155,48 +130,6 @@ export default function WallOfLove() {
 
       {/* Spacing/Footer Separator */}
       <div className="h-2 w-full lg:block hidden"></div>
-
-      {/* Lightbox Modal */}
-      <AnimatePresence>
-        {selectedFeedbackImg && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
-            onClick={() => setSelectedFeedbackImg(null)}
-          >
-            {/* Modal Container */}
-            <motion.div
-              initial={{ scale: 0.95, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 20 }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="relative max-w-4xl w-full flex flex-col items-center justify-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedFeedbackImg(null)}
-                className="absolute top-[-50px] right-0 md:right-[-10px] p-2 bg-[#0D0C22] hover:bg-red-500/10 hover:text-red-400 border border-[#272835] text-white rounded-full transition-all duration-300 flex items-center justify-center z-55 shadow-lg"
-                aria-label="Fechar prova"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              {/* Image Frame */}
-              <div className="bg-[#0D0C22] border border-[#272835] p-3 rounded-3xl shadow-2xl flex flex-col items-center overflow-hidden">
-                <img
-                  src={selectedFeedbackImg}
-                  alt="Prova original do elogio"
-                  className="max-w-full max-h-[75vh] object-contain rounded-2xl"
-                  loading="lazy"
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
     </section>
   );

@@ -6,18 +6,24 @@ import flaskCertImg from '../assets/certificates/flask_certificado.png';
 import estatisticaCertImg from '../assets/certificates/estatistica_certificado.png';
 import pythonOOCertImg from '../assets/certificates/python_oo_certificado.png';
 
-import cert1 from '../assets/certificates/certificado1.jpg';
+import cert1 from '../assets/certificates/certificado1.png';
 import cert2 from '../assets/certificates/certificado2.jpg';
 import cert3 from '../assets/certificates/certificado3.jpg';
 import cert4 from '../assets/certificates/certificado4.jpg';
-import cert5 from '../assets/certificates/certificado5.png';
+import cert5 from '../assets/certificates/certificado5.jpg';
 import cert6 from '../assets/certificates/certificado6.png';
+
+import ifrsBdCertImg from '../assets/certificates/ifrs_bd_certificado.png';
+import vivaeIaCertImg from '../assets/certificates/vivae_ia_certificado.png';
+import vivaeMobileCertImg from '../assets/certificates/vivae_mobile_certificado.png';
+import philipsRelatoriosAdmCertImg from '../assets/certificates/philips_relatorios_adm_certificado.png';
+import excelClubDashboardsCertImg from '../assets/certificates/excel_club_dashboards_certificado.png';
 
 interface Certificate {
   id: string;
   titulo: string;
   instituicao: string;
-  tag: 'Desenvolvimento' | 'Business Intelligence' | 'Ciência de Dados' | 'Banco de Dados' | 'Automação & IA' | 'Estatística' | 'Certificado';
+  tag: 'Desenvolvimento' | 'Business Intelligence' | 'Ciência de Dados' | 'Banco de Dados' | 'Automação & IA' | 'Estatística' | 'Certificado' | 'Mobile' | 'Relatório' | 'Power BI & Excel';
   imageSrc: string;
   images?: string[];
   credentialUrl?: string;
@@ -27,7 +33,7 @@ export default function Certificates() {
   const certificates: Certificate[] = [
     {
       id: 'leroy-merlin-reconhecimento',
-      titulo: 'Certificado de Elogio e Reconhecimento',
+      titulo: 'Certificado de Elogio e Reconhecimento dos clientes',
       instituicao: 'Leroy Merlin',
       tag: 'Certificado',
       imageSrc: cert1,
@@ -51,53 +57,51 @@ export default function Certificates() {
     },
     {
       id: 'python-oo',
-      titulo: 'Python: com orientação a objetos',
+      titulo: 'Python: Orientação a objetos',
       instituicao: 'Alura',
       tag: 'Desenvolvimento',
       imageSrc: pythonOOCertImg,
       credentialUrl: 'https://cursos.alura.com.br/certificate/emersonvicosa/python-3-avancando-orientacao-objetos',
     },
     {
-      id: 'react-dev',
-      titulo: 'Desenvolvimento Web Moderno (React)',
-      instituicao: 'Rocketseat / Alura',
-      tag: 'Desenvolvimento',
-      imageSrc: 'https://placehold.co/800x600/0d0c22/ffffff/png?text=Certificado+React+Developer',
-    },
-    {
-      id: 'power-bi',
-      titulo: 'Microsoft Certified: Power BI Data Analyst',
-      instituicao: 'Microsoft / Data Science Academy',
-      tag: 'Business Intelligence',
-      imageSrc: 'https://placehold.co/800x600/0d0c22/ffffff/png?text=Certificado+Power+BI+Analyst',
-    },
-    {
-      id: 'python-ds',
-      titulo: 'Python para Ciência de Dados & Machine Learning',
-      instituicao: 'Data Science Academy',
-      tag: 'Ciência de Dados',
-      imageSrc: 'https://placehold.co/800x600/0d0c22/ffffff/png?text=Certificado+Python+Data+Science',
-    },
-    {
-      id: 'sql-db',
-      titulo: 'Modelagem e Consulta Avançada de Banco de Dados SQL',
-      instituicao: 'Udemy / SQL Training',
+      id: 'ifrs-bd',
+      titulo: 'Banco de Dados 1: fundamentos',
+      instituicao: 'Instituto Federal do Rio Grande do Sul',
       tag: 'Banco de Dados',
-      imageSrc: 'https://placehold.co/800x600/0d0c22/ffffff/png?text=Certificado+SQL+Advanced',
+      imageSrc: ifrsBdCertImg,
+      credentialUrl: 'https://drive.google.com/drive/u/0/folders/136lUGy72jTOv3W3CUXbe_mOrqfTQH2sl',
     },
     {
-      id: 'n8n-automation',
-      titulo: 'Orquestração de Fluxos e Automação de Processos',
-      instituicao: 'n8n Community',
+      id: 'vivae-ia',
+      titulo: 'Inteligência Artificial: Potencialize sua Carreira',
+      instituicao: 'VivaE',
       tag: 'Automação & IA',
-      imageSrc: 'https://placehold.co/800x600/0d0c22/ffffff/png?text=Certificado+N8N+Automation',
+      imageSrc: vivaeIaCertImg,
+      credentialUrl: 'https://drive.google.com/drive/u/0/folders/1Ywk9QvNCQrjASHtGLcOXb6zW26240nRm',
     },
     {
-      id: 'react-native',
-      titulo: 'Desenvolvimento Mobile Avançado (React Native & Expo)',
-      instituicao: 'Rocketseat',
-      tag: 'Desenvolvimento',
-      imageSrc: 'https://placehold.co/800x600/0d0c22/ffffff/png?text=Certificado+React+Native+Mobile',
+      id: 'vivae-mobile',
+      titulo: 'Fundamentos Desenvolvimento Mobile',
+      instituicao: 'VivaE',
+      tag: 'Mobile',
+      imageSrc: vivaeMobileCertImg,
+      credentialUrl: 'https://drive.google.com/drive/u/0/folders/1Ywk9QvNCQrjASHtGLcOXb6zW26240nRm',
+    },
+    {
+      id: 'philips-relatorios-adm',
+      titulo: 'Gerenciador de Relatórios Conhecendo a Função',
+      instituicao: 'Philips',
+      tag: 'Relatório',
+      imageSrc: philipsRelatoriosAdmCertImg,
+      credentialUrl: 'https://drive.google.com/drive/u/0/folders/1o2GCuArvofuUpDb5NVeim8dcojqPWmEA',
+    },
+    {
+      id: 'excel-club-dashboards',
+      titulo: 'Dashboards no Excel e Power BI',
+      instituicao: 'Excel Club',
+      tag: 'Power BI & Excel',
+      imageSrc: excelClubDashboardsCertImg,
+      credentialUrl: 'https://drive.google.com/drive/u/0/folders/136lUGy72jTOv3W3CUXbe_mOrqfTQH2sl',
     },
   ];
 
@@ -120,6 +124,12 @@ export default function Certificates() {
         return 'bg-rose-500/10 text-rose-400 border border-rose-500/20';
       case 'Certificado':
         return 'bg-teal-500/10 text-teal-400 border border-teal-500/20';
+      case 'Mobile':
+        return 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20';
+      case 'Relatório':
+        return 'bg-fuchsia-500/10 text-fuchsia-400 border border-fuchsia-500/20';
+      case 'Power BI & Excel':
+        return 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20';
       default:
         return 'bg-gray-500/10 text-gray-400 border border-gray-500/20';
     }
@@ -151,7 +161,7 @@ export default function Certificates() {
   };
 
   return (
-    <section className="snap-align-start h-screen w-full flex flex-col justify-between px-6 sm:px-12 lg:px-24 relative overflow-y-auto lg:overflow-hidden bg-[#0B0B0F] border-t border-[#272835] py-12 lg:py-16">
+    <section className="snap-align-start min-h-screen lg:h-screen w-full flex flex-col justify-between px-6 sm:px-12 lg:px-24 relative overflow-visible lg:overflow-hidden bg-[#0B0B0F] border-t border-[#272835] py-12 lg:py-16">
       
       {/* Background ambient lighting */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -171,12 +181,12 @@ export default function Certificates() {
           Conquistas & Estudos
         </span>
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mt-3 leading-tight">
-          Certificados & Reconhecimentos
+          Certificados & Cursos
         </h2>
       </motion.div>
 
       {/* Grid List */}
-      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-center z-10 my-8 flex-1 overflow-y-auto lg:overflow-visible py-2">
+      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-center z-10 my-8 flex-1 overflow-visible py-2">
         {certificates.map((cert, index) => (
           <motion.div
             key={cert.id}
@@ -356,7 +366,11 @@ export default function Certificates() {
                         className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-500/20 hover:bg-indigo-500/30 border border-indigo-500/30 hover:border-indigo-500/50 text-[10px] font-semibold text-indigo-300 hover:text-white rounded-xl transition-all duration-300"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
-                        <span>Validar na Alura</span>
+                        <span>
+                          {selectedCert.credentialUrl.includes('alura.com.br') 
+                            ? 'Validar na Alura' 
+                            : 'Validar Credencial'}
+                        </span>
                       </a>
                     )}
                     <span className={`text-[9px] font-semibold px-2.5 py-0.5 rounded-full uppercase ${getTagStyles(selectedCert.tag)}`}>

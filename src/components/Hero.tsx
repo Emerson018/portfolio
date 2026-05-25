@@ -1,35 +1,23 @@
-import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Play, X } from 'lucide-react';
+import { useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import profilePic from '../assets/profile.jpg';
 import profileVid from '../assets/videos/eu_video.mp4';
 
 export default function Hero() {
-  const [showVideo, setShowVideo] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (showVideo && videoRef.current) {
-      // Force play when the component becomes active to avoid browser-stalled states
+    if (videoRef.current) {
       videoRef.current.play().catch(err => {
         console.warn("Video playback was prevented:", err);
       });
     }
-  }, [showVideo]);
+  }, []);
 
   const scrollToNext = () => {
-    // Scroll 1 view height down
-    window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
-  };
-
-  const handlePlayVideo = () => {
-    setShowVideo(true);
-  };
-
-  const handleCloseVideo = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setShowVideo(false);
+    document.getElementById('projetos')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -93,72 +81,20 @@ export default function Hero() {
             
             {/* Main Interactive Container */}
             <div 
-              onClick={!showVideo ? handlePlayVideo : undefined}
-              className={`absolute inset-0 bg-secondary rounded-[3rem] border border-border overflow-hidden flex items-center justify-center shadow-2xl transition-all duration-500 ${
-                !showVideo ? 'cursor-pointer hover:-translate-y-2 hover:translate-x-2' : ''
-              }`}
+              className="absolute inset-0 bg-secondary rounded-[3rem] border border-border overflow-hidden flex items-center justify-center shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:translate-x-2"
             >
-              <AnimatePresence mode="wait">
-                {!showVideo ? (
-                  <motion.div
-                    key="photo"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="w-full h-full relative"
-                  >
-                    <img 
-                      src={profilePic} 
-                      alt="Emerson Viçosa de Lima" 
-                      className="w-full h-full object-cover rounded-[3rem]"
-                    />
-                    
-                    {/* Hover indicator overlay */}
-                    <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-3 rounded-[3rem]">
-                      <div className="p-4 bg-white/20 backdrop-blur-md rounded-full border border-white/40 text-white animate-pulse">
-                        <Play className="w-8 h-8 fill-white" />
-                      </div>
-                      <span className="text-white text-xs font-bold uppercase tracking-wider text-center px-4">
-                        Assistir Apresentação
-                      </span>
-                    </div>
-
-                    {/* Corner play badge */}
-                    <div className="absolute bottom-4 right-4 bg-primary/95 border border-border p-2.5 rounded-2xl flex items-center justify-center text-white shadow-lg transition-transform duration-300 group-hover:scale-110">
-                      <Play className="w-4 h-4 fill-white" />
-                    </div>
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="video"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="w-full h-full relative bg-black"
-                  >
-                    <video
-                      ref={videoRef}
-                      className="w-full h-full object-cover rounded-[3rem]"
-                      autoPlay
-                      muted
-                      playsInline
-                      controls
-                    >
-                      <source src={profileVid} type="video/mp4" />
-                      Seu navegador não suporta reprodução de vídeos.
-                    </video>
-                    
-                    {/* Exit button */}
-                    <button
-                      onClick={handleCloseVideo}
-                      className="absolute top-4 right-4 z-20 p-2 bg-black/60 hover:bg-black/90 border border-white/20 hover:border-white/50 text-white rounded-full transition-all duration-300 flex items-center justify-center shadow-lg"
-                      title="Voltar para foto"
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <video
+                ref={videoRef}
+                src={profileVid}
+                poster={profilePic}
+                className="w-full h-full object-cover rounded-[3rem]"
+                autoPlay
+                muted
+                loop
+                playsInline
+              >
+                Seu navegador não suporta reprodução de vídeos.
+              </video>
             </div>
           </div>
         </motion.div>

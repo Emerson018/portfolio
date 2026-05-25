@@ -32,7 +32,7 @@ export default function SoftwareDev() {
   };
 
   return (
-    <section className="snap-align-start h-screen w-full flex flex-col justify-between px-6 sm:px-12 lg:px-24 relative overflow-y-auto lg:overflow-hidden bg-card border-t border-border/40 py-12 lg:py-16">
+    <section className="snap-align-start min-h-screen lg:h-screen w-full flex flex-col justify-between px-6 sm:px-12 lg:px-24 relative overflow-visible lg:overflow-hidden bg-card border-t border-border/40 py-12 lg:py-16">
       
       {/* Background ambient lighting */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">

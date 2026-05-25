@@ -14,6 +14,15 @@ interface Dashboard {
 export default function DataBI() {
   const dashboards: Dashboard[] = [
     {
+      id: 'requisicoes',
+      titulo: 'Monitoria de Requisições de TI',
+      descricao:
+        'Integração de dados do FreshService e ERP Tasy. O painel rastreia SLAs de incidentes e requisições da equipe, proporcionando uma visão gerencial do volume de chamados resolvidos e tempo médio de atendimento.',
+      iframeSrc: 'https://app.powerbi.com/view?r=eyJrIjoiZTgyZGRhZDItOTBiYi00YzRmLWE3ZjUtYzQzNDIwZjIzZGI0IiwidCI6IjM2NWQxNWNjLTFkNGItNGQ5Ni04NWZhLTZmZGQxZTBjMzA4OCJ9',
+      tag: 'Infra & FreshService',
+      icon: <Clock className="w-5 h-5 text-emerald-400" />,
+    },
+    {
       id: 'news',
       titulo: 'Vigilância IPCS (Auditoria Clínica)',
       descricao:
@@ -30,15 +39,6 @@ export default function DataBI() {
       iframeSrc: 'https://app.powerbi.com/view?r=eyJrIjoiMmMwYmZjNmItOTZjYS00NDkwLWI1Y2MtYzM0MjgxMjliMzAzIiwidCI6IjM2NWQxNWNjLTFkNGItNGQ5Ni04NWZhLTZmZGQxZTBjMzA4OCJ9',
       tag: 'Financeiro / Power Query',
       icon: <Database className="w-5 h-5 text-indigo-400" />,
-    },
-    {
-      id: 'requisicoes',
-      titulo: 'Monitoria de Requisições de TI',
-      descricao:
-        'Integração de dados do FreshService e ERP Tasy. O painel rastreia SLAs de incidentes e requisições da equipe, proporcionando uma visão gerencial do volume de chamados resolvidos e tempo médio de atendimento.',
-      iframeSrc: 'https://app.powerbi.com/view?r=eyJrIjoiZTgyZGRhZDItOTBiYi00YzRmLWE3ZjUtYzQzNDIwZjIzZGI0IiwidCI6IjM2NWQxNWNjLTFkNGItNGQ5Ni04NWZhLTZmZGQxZTBjMzA4OCJ9',
-      tag: 'Infra & FreshService',
-      icon: <Clock className="w-5 h-5 text-emerald-400" />,
     },
   ];
 
@@ -60,7 +60,7 @@ export default function DataBI() {
   };
 
   return (
-    <section className="snap-align-start h-screen w-full flex flex-col justify-between px-6 sm:px-12 lg:px-24 relative overflow-y-auto lg:overflow-hidden bg-[#0B0B0F] border-t border-[#272835] py-12 lg:py-16">
+    <section id="projetos" className="snap-align-start min-h-screen lg:h-screen w-full flex flex-col justify-between px-6 sm:px-12 lg:px-24 relative overflow-visible lg:overflow-hidden bg-[#0B0B0F] border-t border-[#272835] py-12 lg:py-16">
       
       {/* Background ambient lighting */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
