@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
+import portalBiVid from '../assets/videos/portfolio_portal_bi.mp4';
 
 interface WebProject {
   id: string;
@@ -9,7 +10,7 @@ interface WebProject {
   descricao: string;
   tags: string[];
   videoSrc: string;
-  liveUrl: string;
+  liveUrl?: string;
   codeUrl: string;
 }
 
@@ -20,18 +21,8 @@ export default function WebProjectsShowcase() {
       titulo: 'Dashboard de Gestão Hospitalar',
       descricao: 'Sistema completo de inteligência operacional desenvolvido para otimização de fluxos em ambientes hospitalares. Resolve o problema de fragmentação de logs de atendimento e monitoramento de KPIs clínicos em tempo real, fornecendo relatórios dinâmicos e exportação rápida.',
       tags: ['React', 'Django Rest Framework', 'Tailwind CSS', 'PostgreSQL'],
-      videoSrc: '', // Espaço para inserir a tag <video> do seu projeto
-      liveUrl: 'https://seu-site.com',
-      codeUrl: 'https://github.com/Emerson018',
-    },
-    {
-      id: 'financy-web',
-      titulo: 'Financy Web App',
-      descricao: 'Aplicação web de gestão e planejamento financeiro pessoal. Facilita o controle de receitas e despesas por categorias, conciliação bancária automatizada e projeção de metas mensais por meio de gráficos interativos.',
-      tags: ['React', 'Supabase', 'Tailwind CSS', 'Chart.js'],
-      videoSrc: '', // Espaço para inserir a tag <video> do seu projeto
-      liveUrl: 'https://seu-site.com',
-      codeUrl: 'https://github.com/Emerson018',
+      videoSrc: portalBiVid,
+      codeUrl: 'https://github.com/Emerson018/Django_n_power_bi',
     }
   ];
 
@@ -125,21 +116,23 @@ export default function WebProjectsShowcase() {
           className="flex flex-col gap-6 text-left"
         >
           {/* Project Navigation Tabs */}
-          <div className="flex gap-2">
-            {projects.map((proj, idx) => (
-              <button
-                key={proj.id}
-                onClick={() => setActiveIndex(idx)}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold border transition-all duration-300 ${
-                  activeIndex === idx
-                    ? 'bg-white text-[#0D0C22] border-white shadow-md'
-                    : 'bg-transparent text-gray-400 border-[#272835] hover:text-white hover:border-gray-500'
-                }`}
-              >
-                Projeto {idx + 1}
-              </button>
-            ))}
-          </div>
+          {projects.length > 1 && (
+            <div className="flex gap-2">
+              {projects.map((proj, idx) => (
+                <button
+                  key={proj.id}
+                  onClick={() => setActiveIndex(idx)}
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold border transition-all duration-300 ${
+                    activeIndex === idx
+                      ? 'bg-white text-[#0D0C22] border-white shadow-md'
+                      : 'bg-transparent text-gray-400 border-[#272835] hover:text-white hover:border-gray-500'
+                  }`}
+                >
+                  Projeto {idx + 1}
+                </button>
+              ))}
+            </div>
+          )}
 
           <div>
             {/* Title */}
@@ -168,15 +161,17 @@ export default function WebProjectsShowcase() {
           {/* Buttons */}
           <div className="flex flex-wrap gap-4 mt-2">
             {/* Live Site Link */}
-            <a
-              href={activeProject.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 bg-[#151550] hover:bg-[#1a1a66] text-white text-sm font-semibold rounded-xl hover:scale-[1.03] transition-all duration-300 shadow-lg shadow-black/20"
-            >
-              Visitar Site Ao Vivo
-              <ExternalLink className="w-4 h-4" />
-            </a>
+            {activeProject.liveUrl && (
+              <a
+                href={activeProject.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 bg-[#151550] hover:bg-[#1a1a66] text-white text-sm font-semibold rounded-xl hover:scale-[1.03] transition-all duration-300 shadow-lg shadow-black/20"
+              >
+                Visitar Site Ao Vivo
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            )}
 
             {/* Code Link */}
             <a

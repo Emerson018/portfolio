@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Activity, Database, Clock, X, BarChart3, ArrowUpRight } from 'lucide-react';
+import { Activity, Database, Clock, X, BarChart3, ArrowUpRight, Calendar, Shield } from 'lucide-react';
 
 interface Dashboard {
   id: string;
@@ -14,30 +14,48 @@ interface Dashboard {
 export default function DataBI() {
   const dashboards: Dashboard[] = [
     {
-      id: 'requisicoes',
-      titulo: 'Monitoria de Requisições de TI',
+      id: 'monitoria-chamados',
+      titulo: 'Monitoria de Chamados',
       descricao:
-        'Integração de dados do FreshService e ERP Tasy. O painel rastreia SLAs de incidentes e requisições da equipe, proporcionando uma visão gerencial do volume de chamados resolvidos e tempo médio de atendimento.',
-      iframeSrc: 'https://app.powerbi.com/view?r=eyJrIjoiZTgyZGRhZDItOTBiYi00YzRmLWE3ZjUtYzQzNDIwZjIzZGI0IiwidCI6IjM2NWQxNWNjLTFkNGItNGQ5Ni04NWZhLTZmZGQxZTBjMzA4OCJ9',
-      tag: 'Infra & FreshService',
+        'Acompanhamento de chamados e incidentes integrados com a plataforma FreshService para controle de SLA.',
+      iframeSrc: 'https://app.powerbi.com/view?r=eyJrIjoiYTUxYjZlNjktNDE5Yi00YmEyLThjYWUtZjQ3NDY5MjZlNWVkIiwidCI6IjM2NWQxNWNjLTFkNGItNGQ5Ni04NWZhLTZmZGQxZTBjMzA4OCJ9',
+      tag: 'FreshService',
       icon: <Clock className="w-5 h-5 text-emerald-400" />,
     },
     {
-      id: 'news',
-      titulo: 'Vigilância IPCS (Auditoria Clínica)',
+      id: 'escala-news',
+      titulo: 'Escala News',
       descricao:
-        'Dashboard para análise de adequação de decisões clínicas. O desafio envolveu o uso avançado de funções de contexto de filtro no DAX (como a função ALL) para garantir que os cartões de KPI interajam dinamicamente sem retornar valores em branco durante a filtragem da janela de tempo dos sinais vitais.',
-      iframeSrc: 'https://app.powerbi.com/view?r=eyJrIjoiZTIxMDY4MGQtNjhmZS00NjVhLTkyNjctY2YzOTZiYjJmYWRmIiwidCI6IjM2NWQxNWNjLTFkNGItNGQ5Ni04NWZhLTZmZGQxZTBjMzA4OCJ9',
-      tag: 'Auditoria Clínica',
+        'Visualização integrada da escala médica de plantões e distribuição de turnos no ambiente hospitalar.',
+      iframeSrc: 'https://app.powerbi.com/view?r=eyJrIjoiNTYyNzE3MWUtYTkzOC00NzhiLThiZWYtZmExOGFlNTBkMzgwIiwidCI6IjM2NWQxNWNjLTFkNGItNGQ5Ni04NWZhLTZmZGQxZTBjMzA4OCJ9',
+      tag: 'Hospitalar',
+      icon: <Calendar className="w-5 h-5 text-amber-400" />,
+    },
+    {
+      id: 'vigilancia-ipcs',
+      titulo: 'Vigilância IPCS',
+      descricao:
+        'Monitoramento de Infecções de sítio cirúrgico e conformidade com protocolos de segurança do paciente.',
+      iframeSrc: 'https://app.powerbi.com/view?r=eyJrIjoiYTQ4MTY4Y2EtYWY1ZC00NjY0LThmZDQtMzg4ZTdlYTAxYjNlIiwidCI6IjM2NWQxNWNjLTFkNGItNGQ5Ni04NWZhLTZmZGQxZTBjMzA4OCJ9',
+      tag: 'Hospitalar',
       icon: <Activity className="w-5 h-5 text-red-500" />,
     },
     {
-      id: 'custos',
-      titulo: 'Análise de Custos e Faturamento',
+      id: 'vigilancia-pav',
+      titulo: 'Vigilância PAV',
       descricao:
-        "Painel construído após auditoria de automação de logs hospitalares. Implementei regras de agregação robustas no Power Query para lidar com redundâncias sistêmicas, evitando a soma de valores duplicados na coluna 'valor_unit_hospital' e garantindo o processamento correto ao mapear a variável 'PROCEDIMENTO'.",
-      iframeSrc: 'https://app.powerbi.com/view?r=eyJrIjoiMmMwYmZjNmItOTZjYS00NDkwLWI1Y2MtYzM0MjgxMjliMzAzIiwidCI6IjM2NWQxNWNjLTFkNGItNGQ5Ni04NWZhLTZmZGQxZTBjMzA4OCJ9',
-      tag: 'Financeiro / Power Query',
+        'Controle e prevenção de Pneumonia Associada à Ventilação mecânica através de indicadores em tempo real.',
+      iframeSrc: 'https://app.powerbi.com/view?r=eyJrIjoiMTY0NmVmYWUtZmQ0OS00NmZhLWFhMGQtODdmYTAzNzBkZGU0IiwidCI6IjM2NWQxNWNjLTFkNGItNGQ5Ni04NWZhLTZmZGQxZTBjMzA4OCJ9',
+      tag: 'Hospitalar',
+      icon: <Shield className="w-5 h-5 text-cyan-400" />,
+    },
+    {
+      id: 'auditoria-sistemas',
+      titulo: 'Auditoria de Sistemas',
+      descricao:
+        'Análise de logs sistêmicos e conformidade dos fluxos de dados e integrações hospitalares.',
+      iframeSrc: 'https://app.powerbi.com/view?r=eyJrIjoiNDA1ZThlZmUtNjkzYS00OTMxLWI4ZjQtODQ4YTU3NDBjYTMzIiwidCI6IjM2NWQxNWNjLTFkNGItNGQ5Ni04NWZhLTZmZGQxZTBjMzA4OCJ9',
+      tag: 'Hospitalar',
       icon: <Database className="w-5 h-5 text-indigo-400" />,
     },
   ];
@@ -150,6 +168,11 @@ export default function DataBI() {
             {/* Elegant overlay to preview layout */}
             <div className="absolute inset-0 bg-[#0D0C22]/5 pointer-events-none group-hover:bg-transparent transition-all duration-300"></div>
           </div>
+          
+          {/* Disclaimer for demo data */}
+          <p className="mt-2.5 text-center text-[11px] text-gray-500/60 font-medium tracking-wide">
+            * Nota: Os dados exibidos nestes painéis são fictícios, gerados apenas para fins de demonstração visual e análise de portfólio.
+          </p>
         </motion.div>
 
       </div>
@@ -185,6 +208,11 @@ export default function DataBI() {
             </button>
           </motion.div>
         ))}
+
+        {/* Disclaimer for demo data */}
+        <p className="text-center text-[10px] text-gray-500/60 font-medium tracking-wide mt-2">
+          * Nota: Os dados exibidos nestes painéis são fictícios, gerados apenas para fins de demonstração visual e análise de portfólio.
+        </p>
       </div>
 
       {/* MOBILE FULLSCREEN MODAL */}
@@ -216,6 +244,11 @@ export default function DataBI() {
               allowFullScreen
             ></iframe>
           </div>
+
+          {/* Disclaimer for demo data */}
+          <p className="mt-3 text-center text-[10px] text-gray-500/60 font-medium tracking-wide">
+            * Nota: Os dados exibidos nestes painéis são fictícios, gerados apenas para fins de demonstração visual e análise de portfólio.
+          </p>
         </div>
       )}
 
