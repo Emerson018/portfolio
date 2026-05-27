@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Star, ExternalLink } from 'lucide-react';
+import Footer from './Footer';
 
 interface Feedback {
   id: string;
@@ -52,7 +53,7 @@ export default function WallOfLove() {
   const proofLink = "https://drive.google.com/drive/folders/1ho6x9QoFarjkbm_5-Z48MU4m-JBpLPXr";
 
   return (
-    <section className="snap-align-start min-h-screen lg:h-screen w-full flex flex-col justify-between px-6 sm:px-12 lg:px-24 relative overflow-visible lg:overflow-hidden bg-[#151550] border-t border-[#272835] py-12 lg:py-16">
+    <section className="snap-align-start min-h-screen lg:h-screen w-full flex flex-col justify-between px-6 sm:px-12 lg:px-24 relative overflow-visible lg:overflow-hidden bg-[#151550] border-t border-[#272835] py-8 lg:py-10">
       
       {/* Background ambient lighting */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -77,7 +78,7 @@ export default function WallOfLove() {
       </motion.div>
 
       {/* Grid Container (2x2 on desktop for symmetry with 4 items) */}
-      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 z-10 my-8 flex-1 overflow-visible py-2">
+      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 z-10 my-4 lg:my-3 flex-1 overflow-visible py-1">
         {feedbacks.map((fb, index) => (
           <motion.div
             key={fb.id}
@@ -128,9 +129,7 @@ export default function WallOfLove() {
         ))}
       </div>
 
-      {/* Spacing/Footer Separator */}
-      <div className="h-2 w-full lg:block hidden"></div>
-
+      <Footer />
     </section>
   );
 }

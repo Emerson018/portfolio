@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import portalBiVid from '../assets/videos/portfolio_portal_bi.mp4';
+import portalAdVid from '../assets/videos/portfolio_portal_ad.webm';
+import Footer from './Footer';
 
 interface WebProject {
   id: string;
@@ -17,12 +19,20 @@ interface WebProject {
 export default function WebProjectsShowcase() {
   const projects: WebProject[] = [
     {
-      id: 'dashboard-hospitalar',
-      titulo: 'Dashboard de Gestão Hospitalar',
-      descricao: 'Sistema completo de inteligência operacional desenvolvido para otimização de fluxos em ambientes hospitalares. Resolve o problema de fragmentação de logs de atendimento e monitoramento de KPIs clínicos em tempo real, fornecendo relatórios dinâmicos e exportação rápida.',
+      id: 'portal-powerbi-embedded',
+      titulo: 'Portal Power BI Embedded',
+      descricao: 'Portal corporativo desenvolvido para visualização segura de relatórios do Power BI através do fluxo App Owns Data (Service Principal). Conta com controle de acesso granular baseado em papéis (RBAC) e autenticação JWT gerenciados por um backend Django REST Framework, além de uma interface moderna e responsiva construída em React e Tailwind CSS.',
       tags: ['React', 'Django Rest Framework', 'Tailwind CSS', 'PostgreSQL'],
       videoSrc: portalBiVid,
       codeUrl: 'https://github.com/Emerson018/Django_n_power_bi',
+    },
+    {
+      id: 'hed-ad-digital-signage',
+      titulo: 'HED AD - Digital Signage',
+      descricao: 'Plataforma SaaS de sinalização digital (Digital Signage) desenvolvida para gerenciar e monetizar a exibição de mídias e campanhas publicitárias em TVs hospitalares. Oferece um painel self-service para parceiros comerciais gerenciarem seus anúncios, enquanto a administração hospitalar gerencia o inventário de tempo por turno e aprova conteúdos.',
+      tags: ['React', 'Vite', 'Django Rest Framework', 'Material UI'],
+      videoSrc: portalAdVid,
+      codeUrl: 'https://github.com/Emerson018/HED_AD',
     }
   ];
 
@@ -54,8 +64,8 @@ export default function WebProjectsShowcase() {
         </h2>
       </motion.div>
 
-      {/* Main Grid: 50/50 desktop, stacked mobile */}
-      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center z-10 flex-1 my-8 overflow-visible lg:overflow-hidden">
+      {/* Main Grid: Unequal desktop, stacked mobile */}
+      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-8 lg:gap-12 items-center z-10 flex-1 my-8 overflow-visible lg:overflow-hidden">
         
         {/* Column 1: Mac/Chrome Browser Frame */}
         <motion.div
@@ -65,7 +75,7 @@ export default function WebProjectsShowcase() {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="w-full flex justify-center items-center"
         >
-          <div className="w-full max-w-xl aspect-video bg-[#0B0B0F] border border-[#272835] rounded-2xl overflow-hidden flex flex-col shadow-2xl">
+          <div className="w-full max-w-3xl aspect-video bg-[#0B0B0F] border border-[#272835] rounded-2xl overflow-hidden flex flex-col shadow-2xl">
             {/* Browser Header Bar */}
             <div className="px-4 py-3 border-b border-[#272835] bg-[#070614] flex items-center justify-between">
               {/* Three dots (Mac Style) */}
@@ -91,6 +101,7 @@ export default function WebProjectsShowcase() {
                   muted
                   loop
                   playsInline
+                  preload="metadata"
                 />
               ) : (
                 /* Fallback space for video insertion */
@@ -188,8 +199,7 @@ export default function WebProjectsShowcase() {
 
       </div>
 
-      {/* Spacing/Footer Separator */}
-      <div className="h-2 w-full lg:block hidden"></div>
+      <Footer />
     </section>
   );
 }

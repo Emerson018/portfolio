@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Activity, Database, Clock, X, BarChart3, ArrowUpRight, Calendar, Shield } from 'lucide-react';
+import Footer from './Footer';
 
 interface Dashboard {
   id: string;
@@ -252,8 +253,7 @@ export default function DataBI() {
         </div>
       )}
 
-      {/* Tiny separator spacing to align with scroll snapping container layout */}
-      <div className="h-2 w-full lg:block hidden"></div>
+      <Footer />
       
     </section>
   );

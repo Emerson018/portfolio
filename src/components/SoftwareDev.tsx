@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion as motionFramer, AnimatePresence } from 'framer-motion';
-import { Smartphone, Table, Bot, Mic, Mail, ArrowUpRight, Play, X } from 'lucide-react';
-import { FaLinkedin } from 'react-icons/fa';
+import { Smartphone, Table, Bot, Mic, ArrowUpRight, Play, X } from 'lucide-react';
 import nexstyleLogo from '../assets/nexstyle_logo.png';
 import nexstyleVideo from '../assets/videos/nexstyle_apresentacao.mp4';
 import financyVideo from '../assets/videos/financy_apresentacao.mp4';
+import Footer from './Footer';
 
 export default function SoftwareDev() {
   const [activeVideo, setActiveVideo] = useState<{ url: string; title: string } | null>(null);
@@ -57,7 +57,7 @@ export default function SoftwareDev() {
       </motionFramer.div>
 
       {/* Projects Grid */}
-      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-8 items-stretch z-10 my-8 lg:my-0">
+      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-8 items-stretch z-10 my-8 lg:mt-16 lg:mb-8">
         
         {/* Card 1: NexStyle */}
         <motionFramer.div
@@ -375,34 +375,7 @@ export default function SoftwareDev() {
       </div>
 
       {/* Footer (Rodapé) */}
-      <motionFramer.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="max-w-7xl w-full mx-auto border-t border-border/40 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 z-10"
-      >
-        <span>&copy; {new Date().getFullYear()} Emerson Viçosa de Lima. Todos os direitos reservados.</span>
-        
-        <div className="flex items-center gap-6">
-          <a
-            href="mailto:emersonvicosa@gmail.com"
-            className="flex items-center gap-1.5 hover:text-white transition-colors group"
-          >
-            <Mail className="w-4 h-4 text-blue-400 group-hover:scale-110 transition-transform" />
-            <span>emersonvicosa@gmail.com</span>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/emerson-vi%C3%A7osa-de-lima-1b51041ba/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 hover:text-white transition-colors group"
-          >
-            <FaLinkedin className="w-4 h-4 text-blue-400 group-hover:scale-110 transition-transform" />
-            <span>LinkedIn</span>
-          </a>
-        </div>
-      </motionFramer.div>
+      <Footer />
 
       {/* Video Modal Player */}
       <AnimatePresence>

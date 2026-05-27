@@ -1,21 +1,9 @@
-import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import profilePic from '../assets/profile.jpg';
-import profileVid from '../assets/videos/eu_video.mp4';
 
 export default function Hero() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(err => {
-        console.warn("Video playback was prevented:", err);
-      });
-    }
-  }, []);
-
   const scrollToNext = () => {
     document.getElementById('projetos')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -83,18 +71,11 @@ export default function Hero() {
             <div 
               className="absolute inset-0 bg-secondary rounded-[3rem] border border-border overflow-hidden flex items-center justify-center shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:translate-x-2"
             >
-              <video
-                ref={videoRef}
-                src={profileVid}
-                poster={profilePic}
+              <img
+                src={profilePic}
+                alt="Emerson Viçosa de Lima"
                 className="w-full h-full object-cover rounded-[3rem]"
-                autoPlay
-                muted
-                loop
-                playsInline
-              >
-                Seu navegador não suporta reprodução de vídeos.
-              </video>
+              />
             </div>
           </div>
         </motion.div>

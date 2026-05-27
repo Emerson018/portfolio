@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Award, Eye, X, ExternalLink, Images, ChevronLeft, ChevronRight } from 'lucide-react';
+import Footer from './Footer';
 
 import flaskCertImg from '../assets/certificates/flask_certificado.png';
 import estatisticaCertImg from '../assets/certificates/estatistica_certificado.png';
@@ -161,7 +162,7 @@ export default function Certificates() {
   };
 
   return (
-    <section className="snap-align-start min-h-screen lg:h-screen w-full flex flex-col justify-between px-6 sm:px-12 lg:px-24 relative overflow-visible lg:overflow-hidden bg-[#0B0B0F] border-t border-[#272835] py-12 lg:py-16">
+    <section className="snap-align-start min-h-screen lg:h-screen w-full flex flex-col justify-between px-6 sm:px-12 lg:px-24 relative overflow-visible lg:overflow-hidden bg-[#0B0B0F] border-t border-[#272835] py-8 lg:py-10">
       
       {/* Background ambient lighting */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -186,7 +187,7 @@ export default function Certificates() {
       </motion.div>
 
       {/* Grid List */}
-      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-center z-10 my-8 flex-1 overflow-visible py-2">
+      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 z-10 my-4 lg:my-2 flex-1 overflow-visible py-1">
         {certificates.map((cert, index) => (
           <motion.div
             key={cert.id}
@@ -255,8 +256,7 @@ export default function Certificates() {
         ))}
       </div>
 
-      {/* Spacing/Footer Separator */}
-      <div className="h-2 w-full lg:block hidden"></div>
+      <Footer />
 
       {/* Lightbox Modal */}
       <AnimatePresence>
