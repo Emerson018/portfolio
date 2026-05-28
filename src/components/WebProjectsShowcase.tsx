@@ -21,7 +21,7 @@ export default function WebProjectsShowcase() {
     {
       id: 'portal-powerbi-embedded',
       titulo: 'Portal Power BI Embedded',
-      descricao: 'Portal corporativo desenvolvido para visualização segura de relatórios do Power BI através do fluxo App Owns Data (Service Principal). Conta com controle de acesso granular baseado em papéis (RBAC) e autenticação JWT gerenciados por um backend Django REST Framework, além de uma interface moderna e responsiva construída em React e Tailwind CSS.',
+      descricao: 'Portal corporativo desenvolvido para visualização segura de relatórios do Power BI. Conta com controle de acesso baseado em papéis (RBAC) e autenticação JWT gerenciados por um backend Django REST Framework, além de uma interface moderna e responsiva construída em React e Tailwind CSS.',
       tags: ['React', 'Django Rest Framework', 'Tailwind CSS', 'PostgreSQL'],
       videoSrc: portalBiVid,
       codeUrl: 'https://github.com/Emerson018/Django_n_power_bi',

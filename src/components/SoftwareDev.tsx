@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion as motionFramer, AnimatePresence } from 'framer-motion';
-import { Smartphone, Table, Bot, Mic, ArrowUpRight, Play, X } from 'lucide-react';
+import { Smartphone, Bot, ArrowUpRight, Play, X, Database } from 'lucide-react';
 import nexstyleLogo from '../assets/nexstyle_logo.png';
 import nexstyleVideo from '../assets/videos/nexstyle_apresentacao.mp4';
 import financyVideo from '../assets/videos/financy_apresentacao.mp4';
@@ -57,7 +57,7 @@ export default function SoftwareDev() {
       </motionFramer.div>
 
       {/* Projects Grid */}
-      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-8 items-stretch z-10 my-8 lg:mt-16 lg:mb-8">
+      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-8 items-stretch z-10 my-8 lg:mt-16 lg:mb-8 flex-1 overflow-y-auto py-1 pr-1">
         
         {/* Card 1: NexStyle */}
         <motionFramer.div
@@ -76,7 +76,7 @@ export default function SoftwareDev() {
                 <Smartphone className="w-6 h-6" />
               </div>
               <span className="text-[10px] font-mono px-2 py-0.5 bg-amber-500/10 border border-amber-500/20 text-amber-300 rounded">
-                React Native + Expo
+                Flutter + Stripe
               </span>
             </div>
             <div>
@@ -85,7 +85,7 @@ export default function SoftwareDev() {
                 <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
               </h3>
               <p className="text-xs text-gray-400 mt-2 leading-relaxed">
-                Aplicativo mobile premium de barbearia e salão de beleza. Oferece agendamentos, escolha de profissionais, catálogo de serviços e pagamentos integrados.
+                Aplicativo mobile de barbearia e salão de beleza desenvolvido em Flutter, com agendamentos de serviços, escolha de profissionais e pagamentos integrados via Stripe.
               </p>
             </div>
           </div>
@@ -155,7 +155,7 @@ export default function SoftwareDev() {
                 <Smartphone className="w-6 h-6" />
               </div>
               <span className="text-[10px] font-mono px-2 py-0.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 rounded">
-                React Native + Expo
+                React Native + Flutter
               </span>
             </div>
             <div>
@@ -164,7 +164,7 @@ export default function SoftwareDev() {
                 <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
               </h3>
               <p className="text-xs text-gray-400 mt-2 leading-relaxed">
-                Aplicativo de finanças pessoais para controle de entradas e saídas financeiras. Apresenta saldo consolidado, extrato de transações e gráficos de despesas.
+                Aplicativo de finanças pessoais desenvolvido com React Native e Flutter para controle de entradas e saídas. Apresenta informações como saldo, extrato de transações e gráficos de despesas.
               </p>
             </div>
           </div>
@@ -228,7 +228,7 @@ export default function SoftwareDev() {
           </div>
         </motionFramer.div>
 
-        {/* Card 3: Dashboard Interativo CRUD */}
+        {/* Card 3: Query Builder */}
         <motionFramer.div
           initial="hidden"
           whileInView="visible"
@@ -241,74 +241,53 @@ export default function SoftwareDev() {
           <div className="flex flex-col gap-4">
             <div className="flex justify-between items-start">
               <div className="p-3 bg-purple-500/10 rounded-2xl text-purple-400">
-                <Table className="w-6 h-6" />
+                <Database className="w-6 h-6" />
               </div>
               <span className="text-[10px] font-mono px-2 py-0.5 bg-purple-500/10 border border-purple-500/20 text-purple-300 rounded">
-                DRF + React
+                Amazon Quick + SQL
               </span>
             </div>
             <div>
               <h3 className="text-lg font-bold text-white flex items-center gap-1 group-hover:text-purple-400 transition-colors">
-                Dashboard CRUD
+                Query Builder
                 <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
               </h3>
               <p className="text-xs text-gray-400 mt-2 leading-relaxed">
-                Sistema seguro de gestão cadastral administrativa. Integra Django Rest Framework para validação de dados críticos no backend e React para a interface do dashboard.
+                Automação de chatbot que integra inteligência artificial generativa no Amazon Quick para converter linguagem natural em queries SQL, com a finalide de gerar relatórios no Tasy.
               </p>
             </div>
           </div>
 
-          {/* Visual Mockup - White Browser */}
+          {/* Visual Mockup - Query Builder (AI + SQL + Tasy) */}
           <div className="flex justify-center items-center h-40 overflow-hidden relative mt-4 select-none">
-            <div className="w-36 h-28 bg-white rounded-t-xl border border-gray-300/40 flex flex-col shadow-inner transform translate-y-3 transition-transform group-hover:translate-y-1 duration-300">
-              {/* Browser Header */}
-              <div className="bg-gray-100 px-2 py-1 flex items-center gap-1 border-b border-gray-200">
-                <div className="w-1.5 h-1.5 bg-red-400 rounded-full"></div>
-                <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full"></div>
-                <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
-                <div className="w-20 h-2.5 bg-white border border-gray-200 rounded flex items-center px-1 ml-2 text-[5px] text-gray-400">
-                  localhost:3000
-                </div>
+            <div className="w-36 h-28 bg-[#0B0B0F] rounded-t-xl border border-indigo-500/20 p-2 flex flex-col justify-between shadow-inner transform translate-y-3 transition-transform group-hover:translate-y-1 duration-300">
+              {/* Header: AI Prompt input */}
+              <div className="bg-[#0D0C22] border border-indigo-500/10 rounded p-1 flex items-center gap-1">
+                <div className="w-1 h-1 rounded-full bg-indigo-500 animate-pulse"></div>
+                <span className="text-[4.5px] text-gray-400 font-mono font-medium truncate">IA: "Gerar relatório Tasy"</span>
               </div>
-              {/* Content Panel */}
-              <div className="flex flex-1 overflow-hidden p-1.5 gap-1.5">
-                {/* Mini Sidebar */}
-                <div className="w-10 bg-gray-50 border-r border-gray-200 flex flex-col gap-1 p-0.5">
-                  <div className="h-2 bg-indigo-500/10 rounded w-full"></div>
-                  <div className="h-2 bg-gray-200 rounded w-full"></div>
-                  <div className="h-2 bg-gray-200 rounded w-full"></div>
-                </div>
-                {/* Main Table */}
-                <div className="flex-1 flex flex-col gap-1">
-                  <div className="text-[6px] font-bold text-gray-700">Tabela de Usuários</div>
-                  <table className="w-full text-left border-collapse">
-                    <thead>
-                      <tr className="border-b border-gray-200 bg-gray-50">
-                        <th className="text-[4px] text-gray-500 p-0.5 font-bold">Nome</th>
-                        <th className="text-[4px] text-gray-500 p-0.5 font-bold">Status</th>
-                        <th className="text-[4px] text-gray-500 p-0.5 font-bold">Ações</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-b border-gray-100">
-                        <td className="text-[4px] text-gray-800 p-0.5">Administrador</td>
-                        <td className="text-[4px] text-green-600 p-0.5 font-semibold">Ativo</td>
-                        <td className="text-[3px] text-blue-500 p-0.5 font-bold">Editar</td>
-                      </tr>
-                      <tr className="border-b border-gray-100">
-                        <td className="text-[4px] text-gray-800 p-0.5">Suporte TI</td>
-                        <td className="text-[4px] text-yellow-600 p-0.5 font-semibold">Pendente</td>
-                        <td className="text-[3px] text-blue-500 p-0.5 font-bold">Editar</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+              
+              {/* Mid: Code Editor with SQL Output */}
+              <div className="bg-[#050508] border border-[#272835] rounded p-1.5 font-mono text-[4.5px] text-indigo-300 leading-normal flex-1 my-1">
+                <span className="text-gray-500">// SQL Gerado para o Tasy:</span>
+                <br />
+                <span className="text-emerald-400">SELECT</span> paciente_id, data_alta
+                <br />
+                <span className="text-emerald-400">FROM</span> tasy.atendimentos
+                <br />
+                <span className="text-emerald-400">WHERE</span> status = <span className="text-purple-400">'ativo'</span>;
+              </div>
+
+              {/* Footer: Amazon Quick Status */}
+              <div className="flex justify-between items-center text-[4px] text-gray-500 pt-0.5 border-t border-[#272835]">
+                <span className="text-indigo-400 font-bold font-mono uppercase tracking-wider">Amazon Quick Q</span>
+                <span>Gerado com Sucesso</span>
               </div>
             </div>
           </div>
         </motionFramer.div>
 
-        {/* Card 4: Automação & IA */}
+        {/* Card 4: Chatbot WhatsApp */}
         <motionFramer.div
           initial="hidden"
           whileInView="visible"
@@ -324,48 +303,45 @@ export default function SoftwareDev() {
                 <Bot className="w-6 h-6" />
               </div>
               <span className="text-[10px] font-mono px-2 py-0.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 rounded">
-                OpenAI + SQL
+                Docker + n8n
               </span>
             </div>
             <div>
               <h3 className="text-lg font-bold text-white flex items-center gap-1 group-hover:text-emerald-400 transition-colors">
-                Automação & IA
+                Chatbot WhatsApp
                 <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
               </h3>
               <p className="text-xs text-gray-400 mt-2 leading-relaxed">
-                Desenvolvimento de fluxos integrados e inteligência artificial de orquestração de áudio, convertendo comandos de voz diretamente em consultas estruturadas de banco de dados.
+                Chatbot corporativo integrado para atendimento via WhatsApp, orquestrado e automatizado de ponta a ponta com n8n, hospedado de forma isolada e segura em containers Docker.
               </p>
             </div>
           </div>
 
-          {/* Visual Mockup - White IA Card */}
+          {/* Visual Mockup - WhatsApp Chatbot (Docker + n8n) */}
           <div className="flex justify-center items-center h-40 overflow-hidden relative mt-4 select-none">
-            <div className="w-36 h-28 bg-white rounded-t-xl border border-gray-300/40 p-2 flex flex-col justify-between shadow-inner transform translate-y-3 transition-transform group-hover:translate-y-1 duration-300">
-              {/* Mic Icon & Waveform */}
-              <div className="flex items-center gap-2 border-b border-gray-100 pb-1.5">
-                <div className="p-1 bg-red-50 text-red-500 rounded-full border border-red-200">
-                  <Mic className="w-2.5 h-2.5 animate-pulse" />
-                </div>
-                {/* Voice waveform mock */}
-                <div className="flex gap-0.5 items-center">
-                  <div className="w-0.5 h-1.5 bg-gray-300 rounded-full"></div>
-                  <div className="w-0.5 h-3 bg-indigo-500 rounded-full"></div>
-                  <div className="w-0.5 h-4.5 bg-indigo-500 rounded-full"></div>
-                  <div className="w-0.5 h-2 bg-indigo-500 rounded-full"></div>
-                  <div className="w-0.5 h-3 bg-indigo-500 rounded-full"></div>
-                  <div className="w-0.5 h-1 bg-gray-300 rounded-full"></div>
-                </div>
-                <span className="text-[5px] text-gray-400 ml-auto">Gravando...</span>
+            <div className="w-28 h-40 bg-[#0C100E] rounded-t-2xl border border-emerald-500/20 p-2 flex flex-col gap-2 shadow-inner transform translate-y-3 transition-transform group-hover:translate-y-1 duration-300 relative">
+              {/* Speaker & Sensor */}
+              <div className="flex justify-center items-center gap-1">
+                <div className="w-6 h-0.5 bg-zinc-800 rounded-full"></div>
+                <div className="w-0.5 h-0.5 bg-zinc-800 rounded-full"></div>
               </div>
-              {/* Conversation bubbles */}
-              <div className="flex flex-col gap-1.5 flex-1 justify-center mt-1">
-                {/* User Input Bubble */}
-                <div className="bg-gray-100 text-gray-700 text-[5px] p-1 rounded-lg self-start max-w-[80%] font-medium">
-                  "Mostre as consultas críticas"
+              
+              {/* Mini App Header (WhatsApp style) */}
+              <div className="flex justify-between items-center px-1 mt-1 text-[5px] text-zinc-400 border-b border-zinc-900 pb-1">
+                <span className="font-bold text-white text-[4.5px]">💬 Chatbot</span>
+                <span className="text-[3.5px] px-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded font-mono">Docker</span>
+              </div>
+
+              {/* Chat Feed */}
+              <div className="flex flex-col gap-1.5 overflow-hidden flex-1 justify-end pb-1">
+                {/* User Bubble */}
+                <div className="bg-[#151538] text-white text-[4px] p-1 rounded-lg self-start max-w-[85%] font-medium">
+                  "Status do meu chamado"
                 </div>
-                {/* AI generated SQL Bubble */}
-                <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 text-[4.5px] p-1 rounded-lg self-end font-mono max-w-[90%] leading-normal">
-                  SELECT * FROM incidentes WHERE severidade = 'alta';
+                {/* Bot Bubble */}
+                <div className="bg-emerald-950/40 border border-emerald-500/20 text-emerald-300 text-[4px] p-1 rounded-lg self-end max-w-[85%] leading-normal">
+                  <span className="font-mono font-bold text-[4px] text-white block mb-0.5">n8n:</span>
+                  "Chamado #1042 está em andamento no suporte."
                 </div>
               </div>
             </div>

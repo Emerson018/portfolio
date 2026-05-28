@@ -29,8 +29,8 @@ export default function Hero() {
             Emerson <br className="hidden lg:block" /> Viçosa de Lima
           </h1>
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-gray-300">
-            Desenvolvedor Full-Stack <span className="text-accent hidden sm:inline px-2">|</span> <br className="sm:hidden" />
-            <span className="text-gray-400">Analista de Dados</span>
+            Analista de Dados <span className="text-accent hidden sm:inline px-2">|</span> <br className="sm:hidden" />
+            <span className="text-gray-400">Desenvolvedor Full-Stack</span>
           </h2>
           <p className="text-base sm:text-lg text-gray-400 max-w-lg mx-auto lg:mx-0 leading-relaxed">
             Estudante de Ciência da Computação e autodidata, entusiasta por transformar processos complexos em fluxos otimizados através de IA generativa, automação e análise de dados.

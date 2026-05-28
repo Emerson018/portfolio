@@ -48,3 +48,28 @@ body {
   padding: 0;
   overflow: hidden;
 }
+
+/* Custom Scrollbar Styles for professional looking elements */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0B0F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #272835;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6366F1;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #272835 #0B0B0F;
+}

@@ -78,7 +78,7 @@ export default function WallOfLove() {
       </motion.div>
 
       {/* Grid Container (2x2 on desktop for symmetry with 4 items) */}
-      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 z-10 my-4 lg:my-3 flex-1 overflow-visible py-1">
+      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 z-10 my-4 lg:my-3 flex-1 overflow-y-auto py-1 pr-1">
         {feedbacks.map((fb, index) => (
           <motion.div
             key={fb.id}

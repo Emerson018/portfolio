@@ -187,7 +187,7 @@ export default function Certificates() {
       </motion.div>
 
       {/* Grid List */}
-      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 z-10 my-4 lg:my-2 flex-1 overflow-visible py-1">
+      <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 z-10 my-4 lg:my-2 flex-1 overflow-y-auto py-1 pr-1">
         {certificates.map((cert, index) => (
           <motion.div
             key={cert.id}
